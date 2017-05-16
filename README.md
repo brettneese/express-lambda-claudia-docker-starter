@@ -1,3 +1,3 @@
-# Lambda-Docker-Express-Claudia Starter
+# express-lambda-claudia-docker-starter
 
-This provides a starter repo to build and deploy Lambda-based services using Nodejs (Express), Docker, and Claudia to manage consistency across development and run environments. 
+This provides a starter repo to build and deploy Lambda-based services using Nodejs (Express), Docker, and Claudia to manage consistency across development and run environments. You can build services with native dependencies, run them on your machine using a local server, and deploy them while all wrapped up in the same Docker image AWS uses to run Lambda. 
