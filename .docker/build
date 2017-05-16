@@ -1,0 +1,20 @@
+FROM amazonlinux:2016.09-with-sources
+
+RUN mkdir -p /buid
+WORKDIR /build
+
+# Install repos for node
+RUN curl -X GET -o RPM-GPG-KEY-lambda-epll https://lambda-linux.io/RPM-GPG-KEY-lambda-epll
+RUN rpm --import RPM-GPG-KEY-lambda-epll
+RUN curl -X GET -o epll-release-2017.03-1.2.ll1.noarch.rpm https://lambda-linux.io/epll-release-2017.03-1.2.ll1.noarch.rpm
+RUN yum -y install epll-release-2017.03-1.2.ll1.noarch.rpm
+
+# Install build tools 
+RUN yum -y update
+RUN yum install -y gcc-c++ make
+
+# Install nodejs
+RUN yum --enablerepo=epll-preview -y install nodejs6
+
+# Install claudia
+RUN npm install -g claudia

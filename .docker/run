@@ -1,0 +1,17 @@
+FROM conversionutil_build
+
+RUN mkdir -p /run
+WORKDIR /run
+
+# Contains a simple server to run an Express server locally 
+COPY server.js /run/
+
+# Metacode used for deployment
+COPY claudia.json /run/
+
+# Contains a wrapper for Lambda to proxy to Express
+COPY lambda.js /run/
+
+# Installs the dependencies
+COPY package.json /run/
+RUN npm install

@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  build: 
+    build: 
+      context: ../
+      dockerfile: ./.docker/build
+    tty: true
+
+  $npm_package_name:
+    tty: true
+    command: npm start
+    build: 
+      context: ../
+      dockerfile: ./.docker/run
+    ports:
+      - "8000:8000"
+    volumes:  # Mount the service directory, where development of the service occurs, into the /run/ directory of the docker image
+      - ../service:/run/service
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION=us-east-1
